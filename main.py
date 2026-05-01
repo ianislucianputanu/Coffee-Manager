@@ -1,12 +1,13 @@
 from cafenea import Cafe
-from date import MENIU, NUME_INGREDIENTE
+from date import MENIU, STOC, NUME_INGREDIENTE
 
-cafe = Cafe(MENIU, NUME_INGREDIENTE)
+cafe = Cafe(MENIU, STOC, NUME_INGREDIENTE)
 
 while True:
     print("\n1. Meniu")
-    print("2. Comanda")
-    print("3. Stoc")
+    print("2. Adauga produs")
+    print("3. Vezi cos")
+    print("4. Checkout")
     print("0. Exit")
 
     opt = input("> ")
@@ -16,13 +17,15 @@ while True:
 
     elif opt == "2":
         cafe.show_menu()
-        choice = input("Alege: ")
-        if choice in MENIU:
-            cafe.prepare(choice)
+        key = input("Alege produs: ")
+        cafe.add_product(key)
 
     elif opt == "3":
-        cafe.show_stock()
+        cafe.cart.show()
+
+    elif opt == "4":
+        cafe.checkout()
 
     elif opt == "0":
-        print("Va mai asteptam!")
+        print("Vă mai așteptăm!")
         break

@@ -1,19 +1,13 @@
 class Inventory:
-    def __init__(self):
-        self.stock = {
-            "cafea_g": 200,
-            "apa_ml": 1000,
-            "lapte_ml": 500,
-            "pudra_cacao_g": 100,
-            "pliculet_ceai_buc": 5
-        }
+    def __init__(self, stoc):
+        self.stock = stoc.copy()
 
-    def check(self, ingredients):
-        for ing, qty in ingredients.items():
-            if self.stock.get(ing, 0) < qty:
+    def check(self, ingrediente, qty):
+        for ing, cant in ingrediente.items():
+            if self.stock.get(ing, 0) < cant * qty:
                 return False, ing
         return True, None
 
-    def consume(self, ingredients):
-        for ing, qty in ingredients.items():
-            self.stock[ing] -= qty
+    def consume(self, ingrediente, qty):
+        for ing, cant in ingrediente.items():
+            self.stock[ing] -= cant * qty

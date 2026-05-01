@@ -1,51 +1,66 @@
 from inventory import Inventory
+from cart import Cart
 
 class Cafe:
-    def __init__(self, meniu, nume_ingrediente):
+    def __init__(self, meniu, stoc, nume_ing):
         self.meniu = meniu
-        self.nume_ingrediente = nume_ingrediente
-        self.inventory = Inventory()
-        self.total_vanzari = 0
+        self.inventory = Inventory(stoc)
+        self.cart = Cart()
+        self.nume_ing = nume_ing
 
     def show_menu(self):
         print("\n--- MENIU ---")
         for k, v in self.meniu.items():
-            print(f"{k}. {v['nume']} - {v['pret']} RON")
+            print(f"{k}. {v['nume']} - {v['pret']} lei")
 
-    def show_stock(self):
-        print("\n--- STOC ---")
-        for ing, qty in self.inventory.stock.items():
-            print(f"{self.nume_ingrediente[ing]}: {qty}")
+    def check_stock(self, produs, qty):
+        return self.inventory.check(produs["ingrediente"], qty)
 
-    def check_stock(self, product):
-        return self.inventory.check(product["ingrediente"])
+    def add_product(self, key):
+        if key not in self.meniu:
+            print("Produs invalid")
+            return False
+
+        produs = self.meniu[key]
+
+        qty = int(input("Introduceți cantitatea: "))
+
+        ok, missing = self.check_stock(produs, qty)
+
+        if not ok:
+            print(f" Indisponibil: {self.nume_ing[missing]}")
+            return False
+
+        self.cart.add(produs, qty)
+
+        print(f" {produs['nume']} x{qty} adaugat in cos")
+        return True
+
+    def checkout(self):
+        total = self.cart.total()
+
+        print(f"\n TOTAL: {total} lei")
+
+        money = self.pay(total)
+
+        
+        for name, data in self.cart.items.items():
+            for key, produs in self.meniu.items():
+                if produs["nume"] == name:
+                    self.inventory.consume(produs["ingrediente"], data["qty"])
+
+        print("\n BON FINAL")
+        self.cart.show()
+
+        print(f"\n Rest: {money - total:.2f}")
 
     def pay(self, price):
         while True:
             try:
                 money = float(input("Introdu bani: "))
                 if money < price:
-                    print("Bani insuficienti")
+                    print("Bani insuficienți")
                 else:
                     return money
             except:
-                print("Valoare invalida")
-
-    def prepare(self, key):
-        product = self.meniu[key]
-
-        ok, missing = self.check_stock(product)
-
-        if not ok:
-            print(f" Lipseste: {self.nume_ingrediente[missing]}")
-            return
-
-        print(f"\n Pret: {product['pret']} RON")
-        money = self.pay(product["pret"])
-
-        self.inventory.consume(product["ingrediente"])
-        self.total_vanzari += product["pret"]
-
-        print(f"Se prepara {product['nume']}...")
-        print("Gata!")
-        print(f"Rest: {money - product['pret']:.2f}")
+                print("Valoare invalidă")

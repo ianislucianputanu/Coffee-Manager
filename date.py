@@ -42,6 +42,14 @@ MENIU = {
         }
     }
 }
+STOC = {
+    "cafea_g": 2000,
+    "apa_ml": 5000,
+    "lapte_ml":7000,
+    "pudra_cacao_g": 300,
+    "pliculet_ceai_buc": 500
+}
+
 NUME_INGREDIENTE = {
     "cafea_g": "Cafea",
     "apa_ml": "Apa",

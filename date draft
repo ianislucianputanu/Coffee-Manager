@@ -1,0 +1,19 @@
+Espresso: 
+  PRET: 10RON
+  INGREDIENTE: 18g cafea, 50ml apa
+
+Cappuccino:
+  PRET: 14RON
+  INGREDIENTE: 18g cafea, 100ml lapte, 50ml apa
+
+Latte Machiato:
+  PRET: 16RON
+  INGREDIENTE: 18g cafea, 200ml lapte, 50ml apa
+
+Ciocolata calda:
+  PRET: 12RON
+  INGREDIENTE: 20g pudra cacao, 250ml lapte
+
+Ceai:
+  PRET: 8RON
+  INGREDIENTE: 250ml apa, 1buc pliculet ceai

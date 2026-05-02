@@ -11,7 +11,7 @@ class Cafe:
     def check_stock(self, produs, qty):
         return self.inventory.check(produs["ingrediente"], qty)
 
-    def add_product(self, key):
+    def add_product(self, key, qty=1):
         if key not in self.meniu:
             return False, "Produs invalid"
 

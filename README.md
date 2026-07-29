@@ -26,5 +26,7 @@ automat la fiecare vânzare.
 Cafenele, baruri, fast-food-uri mici sau standuri care vor un sistem simplu 
 de gestiune comenzi + stoc, fără costurile unui POS comercial complex.
 
+**De reținut**: Coffee Manager este un instrument de gestiune comenzi și stoc, **nu un înlocuitor al casei de marcat fiscale** (obligatorie legal pentru orice vânzare). Funcționează cel mai bine ca sistem complementar, proprietarul vede în timp real ce se vinde și ce stoc mai are, în paralel cu sistemul fiscal existent. Stocul introdus se resetează la fiecare pornire a aplicației (gândit pentru sesiuni de o zi/eveniment, nu pentru urmărire pe termen lung între zile diferite).
+
 ## Stack tehnic
 Python, Tkinter (GUI), gestiune date persistentă pentru stoc și vânzări.

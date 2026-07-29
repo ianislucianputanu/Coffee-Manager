@@ -1,4 +1,6 @@
 # Coffee Manager — Sistem de comandă și gestiune stoc pentru cafenele
+## Demo
+   [Vezi demo video](https://youtu.be/QWooHdHm7R0)
 
 ## Ce rezolvă
 Multe cafenele mici gestionează stocul manual sau deloc, produsele se vând 

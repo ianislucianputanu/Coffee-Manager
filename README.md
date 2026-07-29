@@ -1,6 +1,6 @@
 # Coffee Manager — Sistem de comandă și gestiune stoc pentru cafenele
 ## Demo
-   [YouTube](https://youtu.be/QWooHdHm7R0)
+   [YouTube](https://youtu.be/bggshjONOZA)
 
 ## Ce rezolvă
 Multe cafenele mici gestionează stocul manual sau deloc, produsele se vând 
@@ -19,7 +19,7 @@ automat la fiecare vânzare.
   devin indisponibile instant
 - Coș de cumpărături dinamic, cu ajustare cantitate
 - Checkout cu plată simulată și bon de comandă
-- Actualizare automată a stocului după fiecare vânzare
+- Actualizare stoc direct din interfață, proprietarul poate seta cantitățile disponibile la începutul zilei/evenimentului, fără cunoștințe tehnice sau acces la cod
 - Raport zilnic automat cu vânzări, încasări și stoc rămas
 
 ## Cui i se adresează

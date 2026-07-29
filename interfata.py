@@ -315,6 +315,72 @@ def genereaza_raport():
             unitate=UNITATI.get(ing, "")
             f.write(f" - {nume_ing}: {cant} {unitate}\n")
 
+def deschidere_actualizare_stoc():
+    fereastra_stoc=tk.Toplevel(fereastra)
+    fereastra_stoc.title("Actualizeaza stoc")
+    fereastra_stoc.config(bg=CULORI["fundal"])
+    fereastra_stoc.geometry("400x500")
+
+    tk.Label(
+        fereastra_stoc,
+        text="Actualizeaza stocul",
+        font=FONTURI["titlu"],
+        bg=CULORI["fundal"],
+        fg=CULORI["alb"]
+    ).pack(pady=(16, 8))
+
+    frame_inputuri = tk.Frame(fereastra_stoc, bg=CULORI["fundal"])
+    frame_inputuri.pack(padx=20, pady=10, fill="both", expand=True)
+    entries = {}
+    stoc_actual = cafe.inventory.stock
+
+    for ing, cantitate in stoc_actual.items():
+        rand = tk.Frame(frame_inputuri, bg=CULORI["fundal"])
+        rand.pack(fill="x", pady=6)
+        nume_ing = NUME_INGREDIENTE.get(ing, ing)
+        unitate=UNITATI.get(ing, "")
+
+        tk.Label(
+            rand,
+            text=f"{nume_ing} ({unitate})",
+            font=FONTURI["cos"],
+            bg=CULORI["fundal"],
+            fg=CULORI["alb"],
+            width=18,
+            anchor="w"
+        ).pack(side="left")
+
+        entry=tk.Entry(rand, font=FONTURI["cos"], width=10)
+        entry.insert(0, str(cantitate))
+        entry.pack(side="left", padx=8)
+        entries[ing]=entry
+
+    def salveaza_stoc():
+        try:
+            for ing, entry in entries.items():
+                valoare_noua = float(entry.get())
+                cafe.inventory.stock[ing] = valoare_noua
+        except ValueError:
+            messagebox.showerror("Eroare", "Introdu doar numere valide pentru stoc!")
+            return
+        actualizeaza_meniu()
+        messagebox.showinfo("Salvat", "Stocul a fost actualizat cu succes!")
+        fereastra_stoc.destroy()
+
+    btn_salveaza = tk.Label(
+        fereastra_stoc,
+        text="Salveaza stocul",
+        font=FONTURI["buton"],
+        bg=CULORI["accent"],
+        fg="#ffffff",
+        padx=16,
+        pady=8,
+        cursor="hand2"
+    )
+
+    btn_salveaza.pack(pady=16)
+    btn_salveaza.bind("<Button-1>", lambda e: salveaza_stoc())
+
 def inchidere():
     genereaza_raport()
     fereastra.destroy()
@@ -343,6 +409,17 @@ tk.Label(
     bg=CULORI["accent"],
     fg="#CECBF6"
 ).pack()
+
+btn_stoc = tk.Label(
+    header,
+    text="Actualizeaza stoc",
+    font=FONTURI["mic"],
+    bg=CULORI["accent"],
+    fg="#ffffff",
+    cursor="hand2"
+)
+btn_stoc.pack(pady=(8, 0))
+btn_stoc.bind("<Button-1>", lambda e: deschidere_actualizare_stoc())
 
 canvas=tk.Canvas(
     fereastra,

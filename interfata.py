@@ -321,9 +321,9 @@ def inchidere():
 
 fereastra = tk.Tk()
 fereastra.title("Cafenea")
-fereastra.geometry("560x750")
+fereastra.geometry("900x1000")
 fereastra.config(bg=CULORI["fundal"])
-fereastra.resizable(False, False)
+fereastra.resizable(True, True)
 
 header=tk.Frame(fereastra, bg=CULORI["accent"], pady=16)
 header.pack(fill="x")
@@ -399,31 +399,32 @@ frame_cos.pack(fill="x", padx=16)
 frame_butoane=tk.Frame(frame_cos_container, bg=CULORI["cos_fundal"])
 frame_butoane.pack(fill="x", padx=16, pady=(12, 0))
 
-tk.Button(
+btn_goleste = tk.Label(
     frame_butoane,
     text="Goleste cosul",
     font=FONTURI["buton"],
     bg=CULORI["card_hover"],
     fg=CULORI["gri"],
-    relief="flat",
     padx=14,
     pady=8,
-    cursor="hand2",
-    command=goleste_cosul
-).pack(side="left")
+    cursor="hand2"
+)
+btn_goleste.pack(side="left")
+btn_goleste.bind("<Button-1>", lambda e: goleste_cosul())
 
-tk.Button(
+btn_finalizare = tk.Label(
     frame_butoane,
     text="Finalizeaza comanda",
     font=FONTURI["buton"],
     bg=CULORI["accent"],
     fg="#ffffff",
-    relief="flat",
     padx=16,
     pady=8,
-    cursor="hand2",
-    command=finalizeaza_comanda
-).pack(side="right")
+    cursor="hand2"
+)
+fereastra.iconphoto(True, tk.PhotoImage(file="poze/icon.png"))
+btn_finalizare.pack(side="right")
+btn_finalizare.bind("<Button-1>", lambda e: finalizeaza_comanda())
 
 preincarca_poza()
 
